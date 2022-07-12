@@ -1,12 +1,10 @@
-Printf.
-int printf ( const char * format, ... );
-This is the first group project that we have at the ALX SE Programe, which consists of replicating the printf (3) function of language c, calling it this way _printf.
+0x11. C - printf Group Project
+By Clement Adamu and Dimpho Aphiri
 
-This function is part of the standard library and to use it we must specify the header file <stdio.h>.
+Project consists of 15 tasks:
 
-Writes the C string pointed by format to the standard output (stdout). If format includes format specifiers (subsequences beginning with %), the additional arguments following format are formatted and inserted in the resulting string replacing their respective specifiers.
-
-Parameters
-format -> C string that contains the text to be written to stdout.
-
-Where the specifier character at the end is the most significant component, since it defines the type and the interpretation of its corresponding argument:
+0.Write a function that produces output according to a format.
+1.Handle the following conversion specifiers
+2.Handle the following custom conversion specifiers
+3.Handle the following conversion specifiers
+4.Use a local buffer of 1024 chars in order to call write as little as possible.
