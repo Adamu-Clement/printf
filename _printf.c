@@ -1,30 +1,52 @@
-#include "holberton.h"
+#include <stdarg.h>
+#include "main.h"
+#include <stdio.h>
 
-/**
- * _printf - Receives the main string and all the necessary parameters to
- * print a formated string
- * @format: A string containing all the desired characters
- * Return: A total count of the characters printed
- */
-int _printf(const char *format, ...)
-{
-	int printed_chars;
-	conver_t f_list[] = {
-		{"c", print_char},
-		{"s", print_string},
-		{"%", print_percent},
-		{"d", print_integer},
-		{"i", print_integer},
-		{NULL, NULL}
-	};
-	va_list arg_list;
+int _printf(const char *format, ...){
+  int count = 0, i;
+  
+  va_list data;
+  va_start(data, format);
 
-	if (format == NULL)
-		return (-1);
+  // _printf("%s", 'Hello')
+  
+  for (i = 0; format[i] != '\0'; ){
+    
+    /* count the number of characters */
+    /* print to the screen each character counted */
+    if (format[i] != '%'){
+      count += _putchar(format[i]);
+      i++;
+    }
+    else if (format[i] == '%' && format[i+1] !=' '){
+      switch (format[i + 1]){
+        case 'c':
+            /* print the character from the va_arguments */
+            count += _putchar(va_arg(data, int));
+            break;
+        case 's':
+            count += print_string(va_arg(data, char *));
+            break;
+        case '%':
+            /* print the character from the va_arguments */
+            count += _putchar('%');
+            break;
+        case 'd':
+            count += print_decimal(va_arg(data, int));
+            break;
+        case 'i':
+            count += print_decimal(va_arg(data, int));
+            break;
+        default:
+            break;
+      }
+      
+      i += 2;
+    }
+    
+    
+  }
+  
 
-	va_start(arg_list, format);
-	/*Calling parser function*/
-	printed_chars = parser(format, f_list, arg_list);
-	va_end(arg_list);
-	return (printed_chars);
+  return (count);
 }
